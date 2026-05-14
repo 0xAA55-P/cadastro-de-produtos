@@ -7,12 +7,15 @@ Github: https://github.com/0xAA55-P
 Data: 12/05/2026
 """
 
-from rich import print as bprint
+from escolhas import adicionar, remover, editar, listar_id
 from input_output import exibir_menu, ler_inteiro
+from json_handling import listar_todos
+from rich import print as bprint
 from opcao import Opcao
-from json_handling import adicionar_produto, listar_todos
 
 FILENAME = "../json/produtos.json"
+DEBUG = False
+
 
 def tratar_escolha(escolha: int) -> bool:
     """Trata a escolha chamando a opção correta de acordo.
@@ -32,20 +35,20 @@ def tratar_escolha(escolha: int) -> bool:
             return False
 
         case Opcao.ADICIONAR_PRODUTO:
-            nome = str(input("\nNome do Produto: "))
-            preco = float(input("Preço do Produto: "))
-            estoque = int(input("Estoque: "))
-            
-            adicionar_produto(nome, preco, estoque, FILENAME)
+            adicionar()
 
         case Opcao.REMOVER_PRODUTO:
-            pass
+            remover()
+
         case Opcao.EDITAR_PRODUTO:
-            pass
+            editar()
+
         case Opcao.LISTAR_PRODUTOS:
             listar_todos(FILENAME)
+
         case Opcao.LISTAR_POR_ID:
-            pass
+            listar_id()
+
         case _:
             raise ValueError()
 
@@ -67,8 +70,12 @@ def main() -> None:
             bprint("\n[green][SAIDA][/] Adeus!\n")
             break
 
-        except ValueError:
+        except ValueError as e:
             bprint("\n[yellow][AVISO][/] Escolha inválida.")
+
+            if DEBUG:
+                print(e)
+
             continue
 
 

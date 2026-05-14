@@ -1,5 +1,6 @@
 """Utilitários básicos"""
 
+
 def exibir_menu() -> None:
     menu = [
         "Sair",
@@ -12,6 +13,7 @@ def exibir_menu() -> None:
 
     for i, opcao in enumerate(menu):
         print(f"{i}. {opcao}")
+
 
 def ler_inteiro(mensagem: str) -> int:
     """Lê um inteiro, o prompt é a mensagem passada

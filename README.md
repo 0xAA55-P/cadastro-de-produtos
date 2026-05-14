@@ -1,6 +1,3 @@
-# Observação
- - Projeto em construção.
-
 # Cadastro-de-produtos
  - Criei este projeto para praticar tratamento de arquivos JSON e lógica.
  - Um gerenciador de produtos simples que oferece diversas opções para gerenciamento de produtos:
