@@ -10,7 +10,9 @@ Data: 12/05/2026
 from rich import print as bprint
 from input_output import exibir_menu, ler_inteiro
 from opcao import Opcao
+from json_handling import adicionar_produto, listar_todos
 
+FILENAME = "../json/produtos.json"
 
 def tratar_escolha(escolha: int) -> bool:
     """Trata a escolha chamando a opção correta de acordo.
@@ -30,13 +32,18 @@ def tratar_escolha(escolha: int) -> bool:
             return False
 
         case Opcao.ADICIONAR_PRODUTO:
-            pass
+            nome = str(input("\nNome do Produto: "))
+            preco = float(input("Preço do Produto: "))
+            estoque = int(input("Estoque: "))
+            
+            adicionar_produto(nome, preco, estoque, FILENAME)
+
         case Opcao.REMOVER_PRODUTO:
             pass
         case Opcao.EDITAR_PRODUTO:
             pass
         case Opcao.LISTAR_PRODUTOS:
-            pass
+            listar_todos(FILENAME)
         case Opcao.LISTAR_POR_ID:
             pass
         case _:
@@ -48,6 +55,7 @@ def tratar_escolha(escolha: int) -> bool:
 def main() -> None:
     while True:
         try:
+            print()
             exibir_menu()
 
             escolha = ler_inteiro("[ENTRADA] Digite o número da opção: ")

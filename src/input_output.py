@@ -10,7 +10,6 @@ def exibir_menu() -> None:
         "Listar Por ID\n",
     ]
 
-    print()
     for i, opcao in enumerate(menu):
         print(f"{i}. {opcao}")
 
